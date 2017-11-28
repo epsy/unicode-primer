@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title></title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="reveal.js/css/theme/solarized.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section class="slide level2">
+
+<p>Title slide</p>
+</section>
+<section><section id="terminology" class="titleslide slide level1"><h1>Terminology</h1></section><section id="unicode" class="slide level2">
+<h2>Unicode</h2>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">Ordinal</th>
+<th style="text-align: left;">Description</th>
+<th style="text-align: center;">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">U+0041</td>
+<td style="text-align: left;"><code>LATIN CAPITAL LETTER A</code></td>
+<td style="text-align: center;">A</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">U+00C9</td>
+<td style="text-align: left;"><code>LATIN CAPITAL LETTER E WITH ACUTE</code></td>
+<td style="text-align: center;">É</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">U+516b</td>
+<td style="text-align: left;"><code>CJK UNIFIED IDEOGRAPH-5168</code></td>
+<td style="text-align: center;">八</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">U+1f40d</td>
+<td style="text-align: left;"><code>SNAKE</code></td>
+<td style="text-align: center;">🐍</td>
+</tr>
+</tbody>
+</table>
+</section><section class="slide level2">
+
+<p>pic of 0&amp;1s</p>
+</section><section id="codec" class="slide level2">
+<h2>Codec</h2>
+<p>Coder-decoder</p>
+<p>Encoder + Decoder</p>
+</section><section class="slide level2">
+
+<h3 id="decoder">Decoder</h3>
+<p>Restitutes some data in intelligible form</p>
+<p>some data ⇒ decoder ⇒ Unicode data</p>
+</section><section class="slide level2">
+
+<h3 id="encoder">Encoder</h3>
+<p>Takes intelligible data into some other format</p>
+<p>Unicode ⇒ codec =&gt; some data</p>
+</section><section class="slide level2">
+
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">Name</th>
+<th style="text-align: left;">Scope</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;"><code>ascii</code></td>
+<td style="text-align: left;">English alphanumerics and punctuation</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><code>latin-1</code></td>
+<td style="text-align: left;">Western Europe</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><code>utf-8</code></td>
+<td style="text-align: left;">All of Unicode</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><code>utf-16</code></td>
+<td style="text-align: left;">All of Unicode</td>
+</tr>
+</tbody>
+</table>
+<p><small>(See the docs for <code>codecs</code>)</small></p>
+</section><section id="recap" class="slide level2">
+<h2>Recap</h2>
+<ul>
+<li>All your characters are belong to Unicode</li>
+<li>Ethernet wire doesn't speak Unicode, need codec</li>
+<li>export = encode, import = decode</li>
+<li>UTF-8 and UTF-16 are codecs that handles all of Unicode</li>
+</ul>
+</section><section class="slide level2">
+
+<p>PIC You didn't want theory</p>
+</section></section>
+<section><section id="what-python-has" class="titleslide slide level1"><h1>What Python has</h1></section><section class="slide level2">
+
+<p><code>bytes</code> and <code>unicode</code></p>
+</section><section class="slide level2">
+
+<p><code>str</code>: bytes on Python 2</p>
+<p><code>str</code>: unicode on Python 3</p>
+</section><section class="slide level2">
+
+<pre><code>(bytes).decode(codec)
+
+(text).encode(codec)</code></pre>
+</section><section class="slide level2">
+
+<p>Things that you can use text with:</p>
+<ul>
+<li><code>json</code></li>
+<li><code>requests</code></li>
+<li><code>io.open</code></li>
+</ul>
+</section><section id="recap-1" class="slide level2">
+<h2>Recap</h2>
+<ul>
+<li>Two types: for bytes, for text</li>
+<li>Python 2: <code>str</code>, `<code>unicode</code></li>
+<li>Python 3: <code>bytes</code>, <code>str</code></li>
+<li><code>decode</code> and <code>encode</code> methods</li>
+<li>Some objects and functions do the conversions for you</li>
+</ul>
+</section></section>
+<section><section id="commmon-issues" class="titleslide slide level1"><h1>Commmon issues</h1></section><section class="slide level2">
+
+<p>Trying to decode/encode at random</p>
+<pre><code>&gt;&gt;&gt; u&#39;Élodie&#39;.decode(&#39;utf-8&#39;)
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+AttributeError: &#39;str&#39; object has no attribute &#39;decode&#39;</code></pre>
+</section><section class="slide level2">
+
+<p>Trying to decode/encode at random on Python 2</p>
+<pre><code>&gt;&gt;&gt; u&#39;Élodie&#39;.decode(&#39;utf-8&#39;)
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+  File &quot;/usr/lib/python2.7/encodings/utf_8.py&quot;, line 16, in decode
+    return codecs.utf_8_decode(input, errors, True)
+UnicodeEncodeError: &#39;ascii&#39; codec can&#39;t encode character u&#39;\xc9&#39; in position 0: ordinal not in range(128)</code></pre>
+</section><section class="slide level2">
+
+<p>Trying to decode/encode at random on Python 2 with ASCII data</p>
+<pre><code>&gt;&gt;&gt; u&#39;Quick brown fox&#39;.decode(&#39;utf-8&#39;)
+u&#39;Quick brown fox&#39;</code></pre>
+</section><section class="slide level2">
+
+<p>Mixing unicode and bytes</p>
+<pre><code>&gt;&gt;&gt; u&#39;Élodie&#39; + &#39; et &#39; + &#39;Étienne&#39;
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+UnicodeDecodeError: &#39;ascii&#39; codec can&#39;t decode byte 0xc3 in position 0: ordinal not in range(128)</code></pre>
+</section><section class="slide level2">
+
+<h3 id="solution-the-unicode-sandswich">Solution: The Unicode sandswich</h3>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Decode when you acquire data</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Unicode throguhout your app</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Encode when you send data out</td>
+</tr>
+</tbody>
+</table>
+</section><section class="slide level2">
+
+<p>Your keystrokes are also subject to encoding, and so is displaying the text.</p>
+<pre><code>&gt;&gt;&gt; len(u&#39;É&#39;)
+1
+&gt;&gt;&gt; len(&#39;É&#39;)
+2
+&gt;&gt;&gt; &#39;É&#39;
+&#39;\xc3\x89&#39;</code></pre>
+<p><small>(This is most obvious in Python 2, but the same happens in 3)</small></p>
+</section><section class="slide level2">
+
+<p>Python 3 tries to display unicode in your terminal</p>
+<pre><code>&gt;&gt;&gt; &#39;\N{SNOWMAN}&#39;
+&#39;☃&#39;</code></pre>
+</section><section class="slide level2">
+
+<pre><code>$ PYTHONIOENCODING=latin1 python3
+&gt;&gt;&gt; print(&#39;\N{SNOWMAN}&#39;)
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+UnicodeEncodeError: &#39;latin-1&#39; codec can&#39;t encode character &#39;\u2603&#39; in position 0: ordinal not in range(256)
+&gt;&gt;&gt; &#39;\N{SNOWMAN}&#39;
+&#39;\u2603&#39;
+&gt;&gt;&gt; &#39;\xc9tienne&#39;
+&#39;ienne&#39;
+&gt;&gt;&gt; print(ascii(&#39;\xc9tienne&#39;))
+&#39;\xc9tienne&#39;</code></pre>
+</section><section id="recap-2" class="slide level2">
+<h2>Recap</h2>
+<ul>
+<li>Python 2 tries to autoconvert. This hides mistakes until it is too late.</li>
+<li>The Unicode sandwich:</li>
+<li>Decode data as you get it</li>
+<li>Encode data before you hand it off to IO</li>
+<li>Python 2: Don't mix string types</li>
+</ul>
+</section><section class="slide level2">
+
+</section></section>
+    </div>
+  </div>
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+              { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
